@@ -1,13 +1,13 @@
 from setuptools import setup
 
 setup(
-    name='j2cli',
+    name='jin2cli',
     version = '0.1',
     description='json + jinja2 template == file',
-    url='https://github.com/tommyvn/j2cli',
+    url='https://github.com/tommyvn/jin2cli',
     author='Tom van Neerijnen',
     author_email='tom@tomvn.com',
-    packages=['j2cli'],
+    packages=['jin2cli'],
     install_requires=['jinja2'],
     keywords='cli jinja2 template',
     license='Apache',
@@ -21,7 +21,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'j2cli=j2cli:main',
+            'jin2cli=jin2cli:main',
         ],
     },
 )
