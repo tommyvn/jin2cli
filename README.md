@@ -5,7 +5,7 @@ json + jinja2 template == file
 
 ## Install it
 
-`pip install git+https://github.com/tommyvn/jin2cli.git@v0.1`
+`pip jin2cli`
 
 ## Use it
 
