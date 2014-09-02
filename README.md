@@ -38,7 +38,7 @@ If the result will not change the current file contents j2cli will exit with a s
 ```ShellSession
 $ j2cli \
     <(curl https://raw.githubusercontent.com/tommyvn/j2cli/master/examples/docker_to_nginx/nginx.template) \
-    <(echo '{"node": "app-1", "containers": '$(curl https://raw.githubusercontent.com/tommyvn/j2cli/master/examples/docker_to_nginx/nginx.template | python -c 'import json; import sys; print json.dumps([ dict(map(lambda (k, v): (k, v) if k != "Names" else ("Name", v[0].split("_")[0][1:]), c.iteritems())) for c in json.load(sys.stdin) ]);')'}')
+    <(echo '{"node": "app-1", "containers": '$(curl https://raw.githubusercontent.com/tommyvn/j2cli/master/examples/docker_to_nginx/docker.json | python -c 'import json; import sys; print json.dumps([ dict(map(lambda (k, v): (k, v) if k != "Names" else ("Name", v[0].split("_")[0][1:]), c.iteritems())) for c in json.load(sys.stdin) ]);')'}') \
   -o servers.conf && service nginx reload
  * Reloading nginx configuration nginx
    ...done.
