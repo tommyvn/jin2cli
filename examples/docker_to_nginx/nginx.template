@@ -1,0 +1,26 @@
+{% for (container_name, containers_details) in data.containers|sort|groupby('Name') %}
+
+upstream {{ container_name }}_upstreams {
+  {%- for container_details in containers_details|selectattr('Ports')|sort %}
+    server {{ data.node }}:{{ container_details.Ports[0].PublicPort }} max_fails=2 fail_timeout=10;
+  {%- endfor %}
+
+    keepalive {{ containers_details|length * 2}};
+}
+
+server {
+    server_name {{ container_name }};
+    location / {
+        proxy_pass       http://{{ container_name }}_upstreams;
+        proxy_set_header Host      $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+{% endfor %}
+
+server {
+    listen 80 default_server;
+    location / {
+        return 500;
+    }
+}
