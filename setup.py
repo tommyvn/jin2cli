@@ -7,7 +7,7 @@ setup(
     url='https://github.com/tommyvn/j2cli',
     author='Tom van Neerijnen',
     author_email='tom@tomvn.com',
-    packages=['j2ccli'],
+    packages=['j2cli'],
     install_requires=['jinja2'],
     keywords='cli jinja2 template',
     license='Apache',
