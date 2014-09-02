@@ -5,7 +5,7 @@ json + jinja2 template == file
 
 ## Install it
 
-`pip install git+https://github.com/tommyvn/j2cli.git@master`
+`pip install git+https://github.com/tommyvn/j2cli.git@v0.1`
 
 ## Use it
 
