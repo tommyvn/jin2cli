@@ -9,11 +9,15 @@ json + jinja2 template == file
 
 ## Use it
 
+jin2cli takes json data and passes it into a jinja2 template under the `data` variable.
+
+`jin2cli --help`
+
 ### Simple stuff
 
 ```ShellSession
-$ echo 'Hello {{ data.name }}' > my_template
 $ echo '{"name": "Tom"}' > my_json
+$ echo 'Hello {{ data.name }}' > my_template
 $ jin2cli my_template my_json
 Hello Tom
 ```
@@ -46,3 +50,5 @@ $ !!
 data + template already == test
 ```
 Anonymous pipes mean data for templates and json can come from anywhere, including json APIs like Docker.
+This command uses an nginx template on github and example output from the /v1.12/containers/json docker API endpoint to generate an nginx config file which will route traffic to containers based on their names.
+It will reload nginx but only if the nginx config file changed.
