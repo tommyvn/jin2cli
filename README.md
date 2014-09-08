@@ -5,7 +5,7 @@ json + jinja2 template == file
 
 ## Install it
 
-`pip jin2cli`
+`pip install jin2cli`
 
 ## Use it
 
@@ -21,7 +21,7 @@ $ echo 'Hello {{ data.name }}' > my_template
 $ jin2cli my_template my_json
 Hello Tom
 ```
-If no output file is provided jin2cli will output to stdout.
+jin2cli will output to stdout if no output file is provided.
 
 ### Intermediate stuff
 
@@ -35,7 +35,21 @@ $ !!
 data + template already == test
 ```
 If an output file is provided jin2cli will output to that file.
-If the result will not change the current file contents jin2cli will exit with a status of 1, meaning commands like reloads can be chained and executed only when changes occur.
+jin2cli will exit with a status of 1 if the result will not change the current file, meaning commands like nginx reloads can be chained and executed only when changes occur.
+
+### Intermediate stuff with an API request thrown in
+
+```ShellSession
+$ curl http://someapi/app_data.json
+{"name": "frontend", "message": "Hello World"}
+$ echo 'server { server_name {{ data.name }}; location / { echo {{ data.message }}; } }' > my_template
+$ jin2cli my_template <(curl http://someapi/app_data.json) -o server.conf && service nginx reload
+ * Reloading nginx configuration nginx
+   ...done.
+$ !!
+data + template already == test
+```
+Anonymous pipes are awesome and people don't use them enough. Anywhere a file is used for input (or output) an anonymous pipe can build that file on the fly from any other command.
 
 ### (Maybe too) advanced stuff
 
