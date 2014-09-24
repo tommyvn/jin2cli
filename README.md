@@ -1,6 +1,8 @@
 jin2cli
 =====
 
+[![Build Status](https://travis-ci.org/tommyvn/jin2cli.svg?branch=master)](https://travis-ci.org/tommyvn/jin2cli)
+
 json + jinja2 template == file
 
 ## Install it
